@@ -14,16 +14,17 @@ public class Main extends Application {
 		try {
 			
 			FXMLLoader loader  = new FXMLLoader(getClass().getResource("MetroDeParis.fxml"));
-			
 			BorderPane root = (BorderPane)loader.load();
+			
+			Model m= new Model();
+			MetroDeParisController controller = loader.getController();
+			controller.setModel(m);
+		
 			Scene scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
 			
-			Model m= new Model();
-			MetroDeParisController controller = loader.getController();
-			controller.setModel(m);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

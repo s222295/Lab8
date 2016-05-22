@@ -50,16 +50,17 @@ public class MetroDeParisController {
     	
     	String s1 = cbStazionePartenza.getValue();
     	String s2 = cbStazioneArrivo.getValue();
-    	List<String> lista = new LinkedList<>();
-    	if(s1!=null && s2!=null){
-    		lista=model.getCammino(s1, s2);
+    	String s =null;
+    	if(s1!=null && s2!=null && s1!=s2){
+    		model.getCammino(s1, s2);
     	}
+    	s=model.getPercorsoEdgeList();
     	int tempoTotaleInSecondi = (int) model.tempoPercorrenzaStimato();
 		int ore = tempoTotaleInSecondi / 3600;
 		int minuti = (tempoTotaleInSecondi % 3600) / 60;
 		int secondi = tempoTotaleInSecondi % 60;
 		String timeString = String.format("%02d:%02d:%02d", ore, minuti, secondi);
-    	txtArea.setText("Percorso: "+lista.toString()+"\n\nTempo di percorrenza stimato: "+timeString);
+    	txtArea.setText("Percorso: "+s+"\n\nTempo di percorrenza stimato: "+timeString);
     	
     }
 
